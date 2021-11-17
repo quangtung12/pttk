@@ -10,4 +10,6 @@ public class UrlConst {
     public static final String LOGIN_SBTICKETS = HOME + "/login";
 
     public static final String GET_BOOK = HOME + "/getBook";
+
+    public static final String GET_SHOE = HOME + "/getShoe";
 }

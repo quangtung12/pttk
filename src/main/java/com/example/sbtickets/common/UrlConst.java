@@ -70,4 +70,6 @@ public class UrlConst {
     public static final String DELETE_LINE_BUS = HOME + "/deleteLineBus/{id}";
 
     public static final String GET_BOOK = HOME + "/getBook";
+
+    public static final String GET_CLOTHES = HOME +"/getClothes";
 }

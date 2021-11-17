@@ -23,11 +23,13 @@ public class Book {
     private Integer numberOfPage;
     @Column(name = "ISBN")
     private  String isbn;
+    @Column(name = "Image")
+    private String image;
 
     public Book() {
     }
 
-    public Book(Integer id, Integer publisherID, String title, String language, Date publicationDate, Integer numberOfPage, String isbn) {
+    public Book(Integer id, Integer publisherID, String title, String language, Date publicationDate, Integer numberOfPage, String isbn, String image) {
         this.id = id;
         this.publisherID = publisherID;
         this.title = title;
@@ -35,6 +37,7 @@ public class Book {
         this.publicationDate = publicationDate;
         this.numberOfPage = numberOfPage;
         this.isbn = isbn;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -65,6 +68,10 @@ public class Book {
         return isbn;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -91,5 +98,9 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -1,0 +1,115 @@
+package com.example.sbtickets.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "clothes")
+public class Clothes {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Integer id;
+    @Column(name = "StyleClothesID")
+    private Integer styleID;
+    @Column(name = "ClothesBrandsID")
+    private Integer brandsID;
+    @Column(name = "Name")
+    private String name;
+    @Column(name = "Manufacture")
+    private String manufacture;
+    @Column(name = "Size")
+    private String size;
+    @Column(name = "Material")
+    private  String material;
+    @Column(name = "Color")
+    private  String color;
+    @Column(name = "Image")
+    private String image;
+
+    public Clothes() {
+    }
+
+    public Clothes(Integer id, Integer styleID, Integer brandsID, String name, String manufacture, String size, String material, String color, String image) {
+        this.id = id;
+        this.styleID = styleID;
+        this.brandsID = brandsID;
+        this.name = name;
+        this.manufacture = manufacture;
+        this.size = size;
+        this.material = material;
+        this.color = color;
+        this.image = image;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getStyleID() {
+        return styleID;
+    }
+
+    public void setStyleID(Integer styleID) {
+        this.styleID = styleID;
+    }
+
+    public Integer getBrandsID() {
+        return brandsID;
+    }
+
+    public void setBrandsID(Integer brandsID) {
+        this.brandsID = brandsID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getManufacture() {
+        return manufacture;
+    }
+
+    public void setManufacture(String manufacture) {
+        this.manufacture = manufacture;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+}

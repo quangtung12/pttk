@@ -63,4 +63,5 @@ public class UrlConst {
 
     public static final String ADD_TO_CART = HOME + "/addToCart";
 
+    public static final String GET_PAYMENT = HOME + "/getPayment";
 }

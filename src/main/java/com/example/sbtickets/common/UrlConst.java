@@ -70,4 +70,17 @@ public class UrlConst {
     public static final String DELETE_LINE_BUS = HOME + "/deleteLineBus/{id}";
 
     public static final String GET_BOOK = HOME + "/getBook";
+
+    /**
+     * API Electronic SonPk
+     */
+    public static final String GET_ALL_ELECTRONIC = HOME + "/getAllElectronic";
+
+    public static final String GET_DETAIL_ELECTRONIC = HOME + "/getElectronic/{id}";
+
+    public static final String CREATE_ELECTRONIC = HOME + "/createElectronic";
+
+    public static final String UPDATE_ELECTRONIC = HOME + "/updateElectronic/{id}";
+
+    public static final String REMOVE_ELECTRONIC = HOME + "/removeElectronic/{id}";
 }

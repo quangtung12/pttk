@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountService implements AccountIn{
+public class AccountImplement implements AccountDAO {
 
     @Autowired
     AccountRepository accountRepository;

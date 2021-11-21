@@ -1,7 +1,6 @@
 package com.example.sbtickets.authentication.controller;
 
-import com.example.sbtickets.authentication.entity.User;
-import com.example.sbtickets.authentication.service.AccountService;
+import com.example.sbtickets.authentication.service.AccountImplement;
 import com.example.sbtickets.bean.AccountBean;
 import com.example.sbtickets.bean.AuthenticationBean;
 import com.example.sbtickets.bean.WrapperResponse;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AccountController {
 
     @Autowired
-    private AccountService accountService;
+    private AccountImplement accountService;
 
     @RequestMapping(value = UrlConst.REGISTER_CUSTOMER, method = RequestMethod.POST)
     public ResponseEntity<WrapperResponse> register(@RequestBody AccountBean account){

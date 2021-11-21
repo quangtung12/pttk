@@ -11,18 +11,20 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "PublisherID")
+    @Column(name = "PulisherID")
     private Integer publisherID;
     @Column(name = "Title")
     private String title;
     @Column(name = "Language")
     private String language;
-    @Column(name = "PublicationDate")
+    @Column(name = "Publication_date")
     private Date publicationDate;
-    @Column(name = "BumberOfPage")
+    @Column(name = "Number_of_page")
     private Integer numberOfPage;
     @Column(name = "ISBN")
-    private  String isbn;
+    private String isbn;
+    @Column(name = "Image")
+    private String image;
 
     public Book() {
     }
@@ -91,5 +93,13 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

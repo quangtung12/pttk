@@ -1,5 +1,7 @@
 package com.example.sbtickets.authentication.entity;
 
+import org.apache.commons.math3.analysis.function.Add;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +18,6 @@ public class Customer {
     private String mail;
     @Column(name = "Discriminator")
     private String discriminator;
-
     public Customer() {
     }
 

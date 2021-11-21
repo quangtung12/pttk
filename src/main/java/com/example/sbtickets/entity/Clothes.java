@@ -9,10 +9,6 @@ public class Clothes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "StyleClothesID")
-    private Integer styleID;
-    @Column(name = "ClothesBrandsID")
-    private Integer brandsID;
     @Column(name = "Name")
     private String name;
     @Column(name = "Manufacture")
@@ -29,10 +25,8 @@ public class Clothes {
     public Clothes() {
     }
 
-    public Clothes(Integer id, Integer styleID, Integer brandsID, String name, String manufacture, String size, String material, String color, String image) {
+    public Clothes(Integer id, String name, String manufacture, String size, String material, String color, String image) {
         this.id = id;
-        this.styleID = styleID;
-        this.brandsID = brandsID;
         this.name = name;
         this.manufacture = manufacture;
         this.size = size;
@@ -47,22 +41,6 @@ public class Clothes {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStyleID() {
-        return styleID;
-    }
-
-    public void setStyleID(Integer styleID) {
-        this.styleID = styleID;
-    }
-
-    public Integer getBrandsID() {
-        return brandsID;
-    }
-
-    public void setBrandsID(Integer brandsID) {
-        this.brandsID = brandsID;
     }
 
     public String getName() {

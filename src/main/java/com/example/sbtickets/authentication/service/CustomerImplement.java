@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerService implements CustomerIn{
+public class CustomerImplement implements CustomerDAO {
 
     @Override
     public List<Customer> getCustomers() {

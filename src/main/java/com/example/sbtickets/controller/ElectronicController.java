@@ -2,8 +2,8 @@ package com.example.sbtickets.controller;
 
 import com.example.sbtickets.bean.WrapperResponse;
 import com.example.sbtickets.common.UrlConst;
-import com.example.sbtickets.entity.Book;
-import com.example.sbtickets.service.BookService;
+import com.example.sbtickets.entity.Electronic;
+import com.example.sbtickets.service.ElectronicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class BookController {
-
+public class ElectronicController {
     @Autowired
-    BookService bookService;
-    @RequestMapping(value = UrlConst.GET_BOOK, method = RequestMethod.GET)
-    public ResponseEntity<WrapperResponse> getBook() {
+    ElectronicService electronicService;
+
+    @RequestMapping(value = UrlConst.GET_ELECTRONIC, method = RequestMethod.GET)
+    public ResponseEntity<WrapperResponse> getElectronic() {
         WrapperResponse response = new WrapperResponse();
-        List<Book> result = new ArrayList<>();
+        List<Electronic> result = new ArrayList<>();
         try {
-            result = bookService.getBook();
+            result = electronicService.getElectronic();
             response.setBody(result);
             response.setStatus(HttpStatus.OK.value());
         }
@@ -35,5 +35,4 @@ public class BookController {
         }
         return new ResponseEntity<WrapperResponse>(response, HttpStatus.OK);
     }
-//ygjhhlhkhgjh
 }

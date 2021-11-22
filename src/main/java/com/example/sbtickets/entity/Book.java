@@ -1,6 +1,7 @@
 package com.example.sbtickets.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -11,8 +12,6 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "PulisherID")
-    private Integer publisherID;
     @Column(name = "Title")
     private String title;
     @Column(name = "Language")
@@ -25,13 +24,14 @@ public class Book {
     private String isbn;
     @Column(name = "Image")
     private String image;
-
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name ="PulisherID")
+    private Publisher publisher;
     public Book() {
     }
 
-    public Book(Integer id, Integer publisherID, String title, String language, Date publicationDate, Integer numberOfPage, String isbn) {
+    public Book(Integer id, String title, String language, Date publicationDate, Integer numberOfPage, String isbn) {
         this.id = id;
-        this.publisherID = publisherID;
         this.title = title;
         this.language = language;
         this.publicationDate = publicationDate;
@@ -39,13 +39,31 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Book(String title, String language, Date publicationDate, Integer numberOfPage, String isbn, String image, Publisher publisher) {
+        this.title = title;
+        this.language = language;
+        this.publicationDate = publicationDate;
+        this.numberOfPage = numberOfPage;
+        this.isbn = isbn;
+        this.image = image;
+        this.publisher = publisher;
+    }
+
+    public Book(Integer id, String title, String language, Date publicationDate, Integer numberOfPage, String isbn, String image, Publisher publisher) {
+        this.id = id;
+        this.title = title;
+        this.language = language;
+        this.publicationDate = publicationDate;
+        this.numberOfPage = numberOfPage;
+        this.isbn = isbn;
+        this.image = image;
+        this.publisher = publisher;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public Integer getPublisherID() {
-        return publisherID;
-    }
 
     public String getTitle() {
         return title;
@@ -71,9 +89,6 @@ public class Book {
         this.id = id;
     }
 
-    public void setPublisherID(Integer publisherID) {
-        this.publisherID = publisherID;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -102,4 +117,19 @@ public class Book {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+//    public ArrayList<ItemBook> getItemBooks() {
+//        return itemBooks;
+//    }
+//
+//    public void setItemBooks(ArrayList<ItemBook> itemBooks) {
+//        this.itemBooks = itemBooks;
+//    }
 }

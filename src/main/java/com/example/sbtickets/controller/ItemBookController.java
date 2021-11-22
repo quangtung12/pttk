@@ -5,9 +5,11 @@ import com.example.sbtickets.bean.ItemBookBean;
 import com.example.sbtickets.bean.WrapperResponse;
 import com.example.sbtickets.common.UrlConst;
 import com.example.sbtickets.entity.Book;
+import com.example.sbtickets.entity.Cart;
 import com.example.sbtickets.entity.ItemBook;
 import com.example.sbtickets.entity.Publisher;
 import com.example.sbtickets.service.BookService;
+import com.example.sbtickets.service.CartService;
 import com.example.sbtickets.service.ElectronicService;
 import com.example.sbtickets.service.ItemBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ItemBookController {
     ItemBookService itemBookService;
     @Autowired
     BookService bookService;
+
+    @Autowired
+    CartService cartService;
     @GetMapping(UrlConst.GET_ITEM_BOOKS)
     public ResponseEntity<WrapperResponse> getItemBooks(){
         WrapperResponse response = new WrapperResponse();
@@ -63,9 +68,11 @@ public class ItemBookController {
         try {
             int bookId = itemBook.getBookId();
             Book book = bookService.getBookById(bookId);
+            int cartId = 1;
+            Cart cartItem = cartService.getCart(cartId);
             if(book != null){
                 ItemBook addedItemBook = new ItemBook(itemBook.getBarCode(), itemBook.getPrice(),
-                        itemBook.getDiscountCode(), itemBook.getNote(), book);
+                        itemBook.getDiscountCode(), itemBook.getNote(), book, cartItem);
                 itemBookService.createItemBook(addedItemBook);
                 response.setMsg("Add Item Book Successfully");
                 response.setStatus(HttpStatus.OK.value());

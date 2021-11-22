@@ -33,4 +33,6 @@ public class UrlConst {
 
     public static final String DELETE_ITEM_BOOK = HOME + "/itemBook/delete/{id}";
 
+    public static final String ADD_TO_CART = HOME + "/addToCart";
+
 }

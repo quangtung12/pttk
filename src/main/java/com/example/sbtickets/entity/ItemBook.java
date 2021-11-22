@@ -27,6 +27,10 @@ public class ItemBook {
     @JoinColumn(name ="BookID")
     private Book book;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="CartID")
+    private Cart cart;
+
     public ItemBook() {
     }
 
@@ -36,6 +40,15 @@ public class ItemBook {
         this.discountCode = discountCode;
         this.note = note;
         this.book = book;
+    }
+
+    public ItemBook(String barCode, double price, String discountCode, String note, Book book, Cart cart) {
+        this.barCode = barCode;
+        this.price = price;
+        this.discountCode = discountCode;
+        this.note = note;
+        this.book = book;
+        this.cart = cart;
     }
 
     public ItemBook(Integer id, String barCode, double price, String discountCode, String note, Book book) {

@@ -24,4 +24,13 @@ public class UrlConst {
     public static final String GET_CLOTHES = HOME + "/getClothes";
 
     public static final String GET_ITEM_BOOKS = HOME + "/getItemBooks";
+
+    public static final String GET_ITEM_BOOK_BY_ID = HOME + "/itemBook/{id}";
+
+    public static final String CREATE_ITEM_BOOK = HOME + "/createItemBook";
+
+    public static final String UPDATE_ITEM_BOOK = HOME + "/itemBook/edit/{id}";
+
+    public static final String DELETE_ITEM_BOOK = HOME + "/itemBook/delete/{id}";
+
 }

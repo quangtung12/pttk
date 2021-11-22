@@ -3,6 +3,7 @@ package com.example.sbtickets.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -24,9 +25,13 @@ public class Book {
     private String isbn;
     @Column(name = "Image")
     private String image;
+
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name ="PulisherID")
     private Publisher publisher;
+    @OneToMany(mappedBy = "book")
+    private List<ItemBook> itemBooks;
+
     public Book() {
     }
 

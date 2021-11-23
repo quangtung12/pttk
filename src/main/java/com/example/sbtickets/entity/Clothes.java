@@ -24,7 +24,7 @@ public class Clothes {
     private  String color;
     @Column(name = "Image")
     private String image;
-
+//sua db
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "style_clothesid")
     private StyleClothes styleclothes;

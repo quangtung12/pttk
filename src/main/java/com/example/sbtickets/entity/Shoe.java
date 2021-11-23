@@ -24,10 +24,15 @@ public class Shoe {
     @Column(name = "Image")
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name = "ShoeBrandsID")
+    private ShoeBrand shoeBrand;
+
+
     public Shoe() {
     }
 
-    public Shoe(Integer id, String name, String manufacure, Integer size, String material, String color, String style, String image) {
+    public Shoe(Integer id, String name, String manufacure, Integer size, String material, String color, String style, String image, ShoeBrand shoeBrand) {
         this.id = id;
         this.name = name;
         this.manufacure = manufacure;
@@ -36,6 +41,18 @@ public class Shoe {
         this.color = color;
         this.style = style;
         this.image = image;
+        this.shoeBrand = shoeBrand;
+    }
+
+    public Shoe(String name, String manufacure, Integer size, String material, String color, String style, String image, ShoeBrand shoeBrand) {
+        this.name = name;
+        this.manufacure = manufacure;
+        this.size = size;
+        this.material = material;
+        this.color = color;
+        this.style = style;
+        this.image = image;
+        this.shoeBrand = shoeBrand;
     }
 
     public Integer getId() {
@@ -100,5 +117,13 @@ public class Shoe {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public ShoeBrand getShoeBrand() {
+        return shoeBrand;
+    }
+
+    public void setShoeBrand(ShoeBrand shoeBrand) {
+        this.shoeBrand = shoeBrand;
     }
 }

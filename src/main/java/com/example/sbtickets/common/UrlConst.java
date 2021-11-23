@@ -19,6 +19,15 @@ public class UrlConst {
 
     public static final String GET_SHOE = HOME + "/getShoe";
 
+    public static final String GET_SHOE_BY_ID = HOME + "/shoe/{id}";
+
+    public static final String CREATE_SHOE = HOME + "/createShoe";
+
+    public  static final String UPDATE_SHOE = HOME + "/shoe/edit/{id}";
+
+    public static final String DELETE_SHOE = HOME + "/shoe/delete/{id}";
+
+
     public static final String GET_ELECTRONIC = HOME + "/getElectronic";
 
     public static final String GET_CLOTHES = HOME + "/getClothes";

@@ -22,4 +22,11 @@ public class CartService implements CartImplement{
     public void insertItemBook(Cart cart) {
         tRespository.save(cart);
     }
+
+    @Override
+    public void deleteItemBook(Cart cart) {
+        tRespository.delete(cart);
+    }
+
+
 }

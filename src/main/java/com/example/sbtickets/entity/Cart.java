@@ -22,6 +22,12 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<ItemBook> itemBooks;
 
+    @OneToMany(mappedBy = "cart")
+    private List<ItemElectronic> itemElectronic;
+
+    @OneToOne(mappedBy = "cart")
+    private Order order;
+
 
     public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks) {
         this.id = id;
@@ -31,10 +37,11 @@ public class Cart {
         this.itemBooks = itemBooks;
     }
 
-    public Cart(String amount, String item, Integer totalPrice, List<ItemBook> itemBooks) {
+    public Cart(String amount, String item, Integer totalPrice, List<ItemElectronic> itemElectronic, List<ItemBook> itemBooks) {
         this.amount = amount;
         this.item = item;
         this.totalPrice = totalPrice;
+        this.itemElectronic = itemElectronic;
         this.itemBooks = itemBooks;
     }
 

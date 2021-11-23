@@ -2,6 +2,7 @@ package com.example.sbtickets.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "electronic")
@@ -28,6 +29,10 @@ public class Electronic {
     private  String Keyboard;
     @Column(name = "Image")
     private String image;
+
+    @OneToMany(mappedBy = "electronic")
+    private List<ItemElectronic> itemElectronic;
+
 
     public Electronic() {
     }
@@ -122,5 +127,13 @@ public class Electronic {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<ItemElectronic> getItemElectronic() {
+        return itemElectronic;
+    }
+
+    public void setItemElectronic(List<ItemElectronic> itemElectronic) {
+        this.itemElectronic = itemElectronic;
     }
 }

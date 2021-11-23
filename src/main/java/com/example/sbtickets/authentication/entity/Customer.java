@@ -1,5 +1,6 @@
 package com.example.sbtickets.authentication.entity;
 
+import com.example.sbtickets.entity.Order;
 import org.apache.commons.math3.analysis.function.Add;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class Customer {
     private String mail;
     @Column(name = "Discriminator")
     private String discriminator;
+
+
     public Customer() {
     }
 

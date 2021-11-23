@@ -51,12 +51,13 @@ public class ItemBook {
         this.cart = cart;
     }
 
-    public ItemBook(Integer id, String barCode, double price, String discountCode, String note, Book book) {
+    public ItemBook(Integer id, String barCode, double price, String discountCode, String note, Book book, Cart cart) {
         this.id = id;
         this.barCode = barCode;
         this.price = price;
         this.discountCode = discountCode;
         this.note = note;
         this.book = book;
+        this.cart = cart;
     }
 }

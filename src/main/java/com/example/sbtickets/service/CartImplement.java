@@ -7,4 +7,6 @@ public interface CartImplement {
     public Cart getCart(Integer id);
 
     public void insertItemBook(Cart cart);
+
+    public void deleteItemBook(Cart cart);
 }

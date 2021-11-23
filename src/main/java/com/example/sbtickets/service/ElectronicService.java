@@ -16,4 +16,39 @@ public class ElectronicService implements ElectronicImplement{
         List<Electronic> electronicList = electronicRepository.findAll();
         return electronicList;
     }
+
+    @Override
+    public Electronic getElectronicById(int id) {
+        return electronicRepository.getById(id);
+    }
+
+    @Override
+    public void createElectronic(Electronic electronic) {
+        try {
+            electronicRepository.save(electronic);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateElectronic(Electronic electronic) {
+        try {
+            electronicRepository.save(electronic);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteElectronic(int id) {
+        try {
+            electronicRepository.deleteById(id);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }

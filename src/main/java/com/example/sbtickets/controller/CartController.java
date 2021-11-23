@@ -29,20 +29,43 @@ public class CartController {
     ItemBookService itemBookService;
 
     @PostMapping(UrlConst.ADD_TO_CART)
-    public ResponseEntity<WrapperResponse> createItemBook(@RequestBody CartItemBean cartItemBean){
+    public ResponseEntity<WrapperResponse> addToCart(@RequestBody CartItemBean cartItemBean){
+        WrapperResponse response = new WrapperResponse();
+        try {
+            int carId = cartItemBean.getCartId();
+            ItemBook itembook = new ItemBook();
+            Cart cart = cartService.getCart(carId);
+            if(cartItemBean.getTypeItem().equals("Book")){
+                itembook = itemBookService.getItemBookById(cartItemBean.getItemId());
+                cart.getItemBooks().add(itembook);
+                itembook.setCart(cart);
+                cartService.insertItemBook(cart);
+                itemBookService.updateItemBook(itembook);
+            }
+            response.setMsg("Add To Cart Book Successfully");
+            response.setStatus(HttpStatus.OK.value());
+        }catch (
+                Exception ex
+        ){
+            ex.printStackTrace();
+            response.setMsg("Add Item Book Failed");
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return new ResponseEntity<WrapperResponse>(response,HttpStatus.FAILED_DEPENDENCY);
+        }
+        return new ResponseEntity<WrapperResponse>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(UrlConst.DELETE_TO_CART)
+    public ResponseEntity<WrapperResponse> deleteItemCart(@RequestBody CartItemBean cartItemBean){
         WrapperResponse response = new WrapperResponse();
         try {
             int carId = cartItemBean.getCartId();
             ItemBook itembook = new ItemBook();
             if(cartItemBean.getTypeItem().equals("Book")){
                 itembook = itemBookService.getItemBookById(cartItemBean.getItemId());
+                itemBookService.deleteBook(itembook);
             }
-            Cart cart = cartService.getCart(carId);
-            cart.getItemBooks().add(itembook);
-            itembook.setCart(cart);
-            cartService.insertItemBook(cart);
-            itemBookService.updateItemBook(itembook);
-            response.setMsg("Add To Cart Book Successfully");
+            response.setMsg("Delete To Cart Book Successfully");
             response.setStatus(HttpStatus.OK.value());
         }catch (
                 Exception ex

@@ -7,10 +7,12 @@ import com.example.sbtickets.common.UrlConst;
 import com.example.sbtickets.entity.Book;
 import com.example.sbtickets.entity.Cart;
 import com.example.sbtickets.entity.ItemBook;
+import com.example.sbtickets.entity.ItemShoe;
 import com.example.sbtickets.repository.BookRespository;
 import com.example.sbtickets.service.BookService;
 import com.example.sbtickets.service.CartService;
 import com.example.sbtickets.service.ItemBookService;
+import com.example.sbtickets.service.ItemShoeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,21 +30,31 @@ public class CartController {
     @Autowired
     ItemBookService itemBookService;
 
+    @Autowired
+    ItemShoeService itemShoeService;
+
     @PostMapping(UrlConst.ADD_TO_CART)
     public ResponseEntity<WrapperResponse> createItemBook(@RequestBody CartItemBean cartItemBean){
         WrapperResponse response = new WrapperResponse();
         try {
-            int carId = cartItemBean.getCartId();
+            int cartId = cartItemBean.getCartId();
+            Cart cart = cartService.getCart(cartId);
             ItemBook itembook = new ItemBook();
+            ItemShoe itemShoe = new ItemShoe();
             if(cartItemBean.getTypeItem().equals("Book")){
                 itembook = itemBookService.getItemBookById(cartItemBean.getItemId());
+                cart.getItemBooks().add(itembook);
+                itembook.setCart(cart);
+                cartService.insertItem(cart);
+                itemBookService.updateItemBook(itembook);
+            } else if (cartItemBean.getTypeItem().equals("Shoe")) {
+                itemShoe = itemShoeService.getItemShoeById(cartItemBean.getItemId());
+                cart.getItemShoes().add(itemShoe);
+                itemShoe.setCart(cart);
+                cartService.insertItem(cart);
+                itemShoeService.updateItemShoe(itemShoe);
             }
-            Cart cart = cartService.getCart(carId);
-            cart.getItemBooks().add(itembook);
-            itembook.setCart(cart);
-            cartService.insertItemBook(cart);
-            itemBookService.updateItemBook(itembook);
-            response.setMsg("Add To Cart Book Successfully");
+            response.setMsg("Add To Cart Successfully");
             response.setStatus(HttpStatus.OK.value());
         }catch (
                 Exception ex

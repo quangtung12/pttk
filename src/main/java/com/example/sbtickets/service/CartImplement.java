@@ -6,5 +6,5 @@ import com.example.sbtickets.entity.ItemBook;
 public interface CartImplement {
     public Cart getCart(Integer id);
 
-    public void insertItemBook(Cart cart);
+    public void insertItem(Cart cart);
 }

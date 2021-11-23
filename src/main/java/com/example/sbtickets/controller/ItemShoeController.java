@@ -4,8 +4,10 @@ import com.example.sbtickets.bean.ShoeBean;
 import com.example.sbtickets.bean.ItemShoeBean;
 import com.example.sbtickets.bean.WrapperResponse;
 import com.example.sbtickets.common.UrlConst;
+import com.example.sbtickets.entity.Cart;
 import com.example.sbtickets.entity.Shoe;
 import com.example.sbtickets.entity.ItemShoe;
+import com.example.sbtickets.service.CartService;
 import com.example.sbtickets.service.ShoeService;
 import com.example.sbtickets.service.ItemShoeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class ItemShoeController {
     ItemShoeService itemShoeService;
     @Autowired
     ShoeService shoeService;
+    @Autowired
+    CartService cartService;
     @GetMapping(UrlConst.GET_ITEM_SHOES)
     public ResponseEntity<WrapperResponse> getItemShoes(){
         WrapperResponse response = new WrapperResponse();
@@ -60,9 +64,11 @@ public class ItemShoeController {
         try {
             int shoeId = itemShoe.getShoeId();
             Shoe shoe = shoeService.getShoeById(shoeId);
+            int cartId = 1;
+            Cart cartItem = cartService.getCart(cartId);
             if(shoe != null){
                 ItemShoe addedItemShoe = new ItemShoe(itemShoe.getBarCode(), itemShoe.getPrice(),
-                        itemShoe.getNote(), shoe);
+                        itemShoe.getNote(), shoe, cartItem);
                 itemShoeService.createItemShoe(addedItemShoe);
                 response.setMsg("Add Item Shoe Successfully");
                 response.setStatus(HttpStatus.OK.value());
@@ -87,8 +93,10 @@ public class ItemShoeController {
             ItemShoe itemShoe = itemShoeService.getItemShoeById(id);
             int shoeId = itemShoeBean.getShoeId();
             Shoe shoe = shoeService.getShoeById(shoeId);
-            ItemShoe editedItemShoe = new ItemShoe(id,itemShoeBean.getBarCode(),itemShoeBean.getPrice() ,
-                    itemShoeBean.getNote(), shoe);
+            int cartId = 1;
+            Cart cartItem = cartService.getCart(cartId);
+            ItemShoe editedItemShoe = new ItemShoe(id,itemShoeBean.getBarCode(),itemShoeBean.getPrice(),
+                    itemShoeBean.getNote(), shoe, cartItem);
             itemShoeService.updateItemShoe(editedItemShoe);
             response.setMsg("Update Item Shoe Successfully");
             response.setStatus(HttpStatus.OK.value());

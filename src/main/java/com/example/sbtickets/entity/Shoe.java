@@ -25,7 +25,7 @@ public class Shoe {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "ShoeBrandsID")
+    @JoinColumn(name = "shoe_brandsid")
     private ShoeBrand shoeBrand;
 
 

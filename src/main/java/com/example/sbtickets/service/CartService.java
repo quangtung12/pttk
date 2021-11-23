@@ -19,7 +19,7 @@ public class CartService implements CartImplement{
     }
 
     @Override
-    public void insertItemBook(Cart cart) {
+    public void insertItem(Cart cart) {
         tRespository.save(cart);
     }
 }

@@ -22,20 +22,25 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<ItemBook> itemBooks;
 
+    @OneToMany(mappedBy = "cart")
+    private List<ItemShoe> itemShoes;
 
-    public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks) {
+
+    public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes) {
         this.id = id;
         this.amount = amount;
         this.item = item;
         this.totalPrice = totalPrice;
         this.itemBooks = itemBooks;
+        this.itemShoes = itemShoes;
     }
 
-    public Cart(String amount, String item, Integer totalPrice, List<ItemBook> itemBooks) {
+    public Cart(String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes) {
         this.amount = amount;
         this.item = item;
         this.totalPrice = totalPrice;
         this.itemBooks = itemBooks;
+        this.itemShoes = itemShoes;
     }
 
     public Cart(){
@@ -80,5 +85,13 @@ public class Cart {
 
     public void setItemBooks(List<ItemBook> itemBooks) {
         this.itemBooks = itemBooks;
+    }
+
+    public List<ItemShoe> getItemShoes() {
+        return itemShoes;
+    }
+
+    public void setItemShoes(List<ItemShoe> itemShoes) {
+        this.itemShoes = itemShoes;
     }
 }

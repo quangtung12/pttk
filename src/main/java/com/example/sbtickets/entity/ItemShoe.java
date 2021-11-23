@@ -25,6 +25,10 @@ public class ItemShoe {
     @JoinColumn(name ="ShoeID")
     private Shoe shoe;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="CartID")
+    private Cart cart;
+
     public ItemShoe() {
     }
 
@@ -35,11 +39,20 @@ public class ItemShoe {
         this.shoe = shoe;
     }
 
-    public ItemShoe(Integer id, String barCode, double price, String note, Shoe shoe) {
+    public ItemShoe(String barCode, double price, String note, Shoe shoe, Cart cart) {
+        this.barCode = barCode;
+        this.price = price;
+        this.note = note;
+        this.shoe = shoe;
+        this.cart = cart;
+    }
+
+    public ItemShoe(Integer id, String barCode, double price, String note, Shoe shoe, Cart cart) {
         this.id = id;
         this.barCode = barCode;
         this.price = price;
         this.note = note;
         this.shoe = shoe;
+        this.cart = cart;
     }
 }

@@ -20,6 +20,8 @@ public class UrlConst {
      * API login hệ thống Sbtickets
      */
     public static final String LOGIN_SBTICKETS = HOME + "/login";
+    public static final String LOGIN_CUSTOMER = HOME + "/loginCus";
+    public static final String REGISTER_CUSTOMER =HOME + "/registerCus";
 
     /**
      * API getAllDriver CuongNv
@@ -72,4 +74,20 @@ public class UrlConst {
     public static final String GET_BOOK = HOME + "/getBook";
 
     public static final String GET_CLOTHES = HOME +"/getClothes";
+
+    public static final String CREATE_CLOTHES = HOME + "/createClothes";
+
+    public static final String GET_CLOTHES_BY_ID = HOME + "/getClothesById/{id}";
+
+    public static final String UPDATE_CLOTHES = HOME + "/updateClothes/{id}";
+
+    public static final String DELETE_CLOTHES = HOME + "/deleteClothes/{id}";
+
+    public static final String FIND_CLOTHES = HOME + "/findClothes";
+
+    public static final String DELETE_CLOTHES_S = HOME + "/deleteClothesS";
+
+    public static final String GET_ELECTRONIC = HOME + "/electronic";
+
+    public static final String GET_SHOE = HOME + "/shoe";
 }

@@ -1,5 +1,8 @@
 package com.example.sbtickets.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,10 +12,6 @@ public class Clothes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "StyleClothesID")
-    private Integer styleID;
-    @Column(name = "ClothesBrandsID")
-    private Integer brandsID;
     @Column(name = "Name")
     private String name;
     @Column(name = "Manufacture")
@@ -26,13 +25,21 @@ public class Clothes {
     @Column(name = "Image")
     private String image;
 
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "style_clothesid")
+    private StyleClothes styleclothes;
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "clothes_brandsid")
+    private ClothesBrands clothesbrands;
+
     public Clothes() {
     }
 
-    public Clothes(Integer id, Integer styleID, Integer brandsID, String name, String manufacture, String size, String material, String color, String image) {
+    public Clothes(Integer id, StyleClothes style, ClothesBrands brands, String name, String manufacture, String size, String material, String color, String image) {
         this.id = id;
-        this.styleID = styleID;
-        this.brandsID = brandsID;
+        this.styleclothes = style;
+        this.clothesbrands = brands;
         this.name = name;
         this.manufacture = manufacture;
         this.size = size;
@@ -41,28 +48,24 @@ public class Clothes {
         this.image = image;
     }
 
+    public Clothes(Integer id, String name, String manufacture, String size, String material, String color, String image, StyleClothes styleclothes, ClothesBrands clothesbrands) {
+        this.id = id;
+        this.name = name;
+        this.manufacture = manufacture;
+        this.size = size;
+        this.material = material;
+        this.color = color;
+        this.image = image;
+        this.styleclothes = styleclothes;
+        this.clothesbrands = clothesbrands;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStyleID() {
-        return styleID;
-    }
-
-    public void setStyleID(Integer styleID) {
-        this.styleID = styleID;
-    }
-
-    public Integer getBrandsID() {
-        return brandsID;
-    }
-
-    public void setBrandsID(Integer brandsID) {
-        this.brandsID = brandsID;
     }
 
     public String getName() {
@@ -111,5 +114,21 @@ public class Clothes {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public StyleClothes getStyleclothes() {
+        return styleclothes;
+    }
+
+    public void setStyleclothes(StyleClothes styleclothes) {
+        this.styleclothes = styleclothes;
+    }
+
+    public ClothesBrands getClothesbrands() {
+        return clothesbrands;
+    }
+
+    public void setClothesbrands(ClothesBrands clothesbrands) {
+        this.clothesbrands = clothesbrands;
     }
 }

@@ -71,4 +71,23 @@ public class UrlConst {
 
     public static final String GET_BOOK = HOME + "/getBook";
     public static final String GET_PAYMENT = HOME + "/getPayment";
+    public static final String GET_SHOES = HOME + "/getShoe";
+
+    public static final String GET_SHOE_BY_ID = HOME + "/shoe/{id}";
+
+    public static final String CREATE_SHOE = HOME + "/createShoe";
+
+    public  static final String UPDATE_SHOE = HOME + "/shoe/edit/{id}";
+
+    public static final String DELETE_SHOE = HOME + "/shoe/delete/{id}";
+    public static final String GET_ITEM_SHOES = HOME + "/getItemShoes";
+
+    public static final String GET_ITEM_SHOE_BY_ID = HOME + "/itemShoe/{id}";
+
+    public static final String CREATE_ITEM_SHOE = HOME + "/createItemShoe";
+
+    public static final String UPDATE_ITEM_SHOE = HOME + "/itemShoe/edit/{id}";
+
+    public static final String DELETE_ITEM_SHOE = HOME + "/itemShoe/delete/{id}";
+
 }

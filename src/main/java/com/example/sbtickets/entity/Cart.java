@@ -28,6 +28,14 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<ItemClothes> itemClothes;
 
+    @OneToMany(mappedBy = "cart")
+    private List<ItemElectronic> itemElectronic;
+
+    @OneToOne(mappedBy = "cart")
+    private Order order;
+
+    public Cart() {
+    }
 
     public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes) {
         this.id = id;
@@ -38,16 +46,14 @@ public class Cart {
         this.itemShoes = itemShoes;
     }
 
-    public Cart(String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes) {
+    public Cart(String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes, List<ItemClothes> itemClothes, List<ItemElectronic> itemElectronic) {
         this.amount = amount;
         this.item = item;
         this.totalPrice = totalPrice;
         this.itemBooks = itemBooks;
         this.itemShoes = itemShoes;
-    }
-
-    public Cart(){
-
+        this.itemClothes = itemClothes;
+        this.itemElectronic = itemElectronic;
     }
 
     public Integer getId() {

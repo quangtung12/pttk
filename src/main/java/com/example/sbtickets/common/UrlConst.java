@@ -26,6 +26,7 @@ public class UrlConst {
     public  static final String UPDATE_SHOE = HOME + "/shoe/edit/{id}";
 
     public static final String DELETE_SHOE = HOME + "/shoe/delete/{id}";
+
     public static final String GET_ITEM_SHOES = HOME + "/getItemShoes";
 
     public static final String GET_ITEM_SHOE_BY_ID = HOME + "/itemShoe/{id}";
@@ -64,4 +65,22 @@ public class UrlConst {
     public static final String ADD_TO_CART = HOME + "/addToCart";
 
     public static final String GET_PAYMENT = HOME + "/getPayment";
+
+    public static final String DELETE_TO_CART = HOME + "/deleteToCart";
+
+    public static final String GET_ITEM_ELECTRONIC = HOME + "/getItemElectronic";
+
+    public static final String GET_ITEM_ELECTRONIC_BY_ID = HOME + "/itemElectronic/{id}";
+
+    public static final String CREATE_ITEM_ELECTRONIC = HOME + "/createItemElectronic";
+
+    public static final String UPDATE_ITEM_ELECTRONIC = HOME + "/itemElectronic/edit/{id}";
+
+    public static final String DELETE_ITEM_ELECTRONIC = HOME + "/itemElectronic/delete/{id}";
+
+    public static final String CREATE_ORDER = HOME + "/createOrder";
+
+    public static final String FIND_SHIPMENT = HOME + "/findShipment/{id}";
+
+    public static final String EDIT_SHIPMENT = HOME + "/editShipment";
 }

@@ -71,4 +71,14 @@ public class ItemBookService implements ItemBookImplement {
 
     }
 
+    @Override
+    public void deleteBook(ItemBook itemBook) {
+        try {
+            itemBookRepository.delete(itemBook);
+        } catch (Exception ex
+        ) {
+            ex.printStackTrace();
+        }
+    }
+
 }

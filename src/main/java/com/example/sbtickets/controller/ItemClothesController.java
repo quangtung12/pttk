@@ -1,7 +1,11 @@
+package com.example.sbtickets.controller;
+
 import com.example.sbtickets.bean.ItemClothesBean;
 import com.example.sbtickets.bean.WrapperResponse;
 import com.example.sbtickets.common.UrlConst;
-import com.example.sbtickets.entity.ItemClothes;
+import com.example.sbtickets.entity.*;
+import com.example.sbtickets.service.CartService;
+import com.example.sbtickets.service.ClothesService;
 import com.example.sbtickets.service.ItemClothesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class ItemCLothesController {
+public class ItemClothesController {
 
     @Autowired
     ItemClothesService itemClothesService;
-    @RequestMapping(value = UrlConst.GET_ITEM_CLOTHES, method = RequestMethod.GET)
 
+    @Autowired
+    ClothesService clothesService;
+
+    @Autowired
+    CartService cartService;
+
+
+    @RequestMapping(value = UrlConst.GET_ITEM_CLOTHES, method = RequestMethod.GET)
     public ResponseEntity<WrapperResponse> getItemClothes() {
         WrapperResponse response = new WrapperResponse();
         List<ItemClothes> result = new ArrayList<>();
@@ -35,7 +46,6 @@ public class ItemCLothesController {
     }
 
     @RequestMapping(value = UrlConst.GET_ITEM_CLOTHES_ID, method = RequestMethod.GET)
-
     public ResponseEntity<WrapperResponse> getItemClothesId(@PathVariable("id") Integer id){
         WrapperResponse response = new WrapperResponse();
         ItemClothes itemClothes;
@@ -55,19 +65,18 @@ public class ItemCLothesController {
 
     public ResponseEntity<WrapperResponse> createItemClothes(@RequestBody ItemClothesBean itemClothes) {
         WrapperResponse response = new WrapperResponse();
-        ItemClothes newItemCLothes, createdItemClothes;
         try{
-            newItemCLothes = new ItemClothes(
-                    itemClothes.getId(),
-                    itemClothes.getCartId(),
-                    itemClothes.getBar_code(),
-                    itemClothes.setDiscount_code(),
-                    itemClothes.getPrice(),
-                    itemClothes.getClothesId()
-            );
-            response.setBody(createdItemClothes);
-            response.setStatus(HttpStatus.OK.value());
-            response.setMsg("Add item clothes successfully");
+            int clothesId = itemClothes.getClothesId();
+            Clothes clothes = clothesService.getClothesById(clothesId);
+            int cartId = 1;
+            Cart cartItem = cartService.getCart(cartId);
+            if(clothes != null){
+                ItemClothes addedItemBook = new ItemClothes(itemClothes.getBar_code(), itemClothes.getPrice(),
+                        itemClothes.getDiscount_code(), clothes, cartItem);
+                itemClothesService.createItemClothes(addedItemBook);
+                response.setMsg("Add Item Clothes Successfully");
+                response.setStatus(HttpStatus.OK.value());
+            }
         }catch (Exception e) {
             response.setMsg("Cannot add new item clothes");
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -78,19 +87,18 @@ public class ItemCLothesController {
 
     @RequestMapping(value = UrlConst.UPDATE_ITEM_CLOTHES, method = RequestMethod.PUT)
 
-    public ResponseEntity<WrapperResponse> updateItemClothes(@PathVariable("id") Integer id, @RequestBody ItemClothesBean itemClothes) {
+    public ResponseEntity<WrapperResponse> updateItemClothes(@PathVariable("id") Integer id, @RequestBody ItemClothesBean itemClothesBean) {
         WrapperResponse response = new WrapperResponse();
-        ItemClothes updatingItemClothes;
         try{
-            updatingItemClothes = new ItemClothes(
-                    itemClothes.getId(),
-                    itemClothes.getCartId(),
-                    itemClothes.getBar_code(),
-                    itemClothes.setDiscount_code(),
-                    itemClothes.getPrice(),
-                    itemClothes.getClothesId()
-            );
-            response.setMsg("Updated successfully");
+            ItemClothes itemclothes = itemClothesService.getItemClothesId(id);
+            int clothesId = itemClothesBean.getClothesId();
+            Clothes clothes = clothesService.getClothesById(clothesId);
+            int cartId = 1;
+            Cart cartItem = cartService.getCart(cartId);
+            ItemClothes editedItemClothes = new ItemClothes(id,itemClothesBean.getBar_code(),itemClothesBean.getPrice() ,
+                    itemClothesBean.getDiscount_code(), clothes, cartItem);
+            itemClothesService.updateItemClothes(editedItemClothes);
+            response.setMsg("Update Item Clothes Successfully");
             response.setStatus(HttpStatus.OK.value());
         } catch (Exception ex){
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -101,7 +109,6 @@ public class ItemCLothesController {
     }
 
     @RequestMapping(value = UrlConst.DELETE_ITEM_CLOTHES, method = RequestMethod.DELETE)
-
     public ResponseEntity<WrapperResponse> deleteItemClothes(@PathVariable("id") Integer id) {
         WrapperResponse response = new WrapperResponse();
         try{

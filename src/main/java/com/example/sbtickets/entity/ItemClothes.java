@@ -9,39 +9,58 @@ public class ItemClothes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "ClothesID")
-    private Integer clothesId;
-    @Column(name = "CartID")
-    private Integer cartId;
-    @Column(name = "Bar_code")
+    @Column(name = "bar_code")
     private String bar_code;
-    @Column(name = "Price")
+    @Column(name = "price")
     private Double price;
-    @Column(name = "Discount_code")
+    @Column(name = "discount_code")
     private String discount_code;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ClothesID")
     private Clothes clothes;
 
-    public ItemClothes(Integer id, Integer clothesId, Integer cartId, String bar_code, Double price, String discount_code, Clothes clothes) {
-        this.id = id;
-        this.clothesId = clothesId;
-        this.cartId = cartId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="CartID")
+    private Cart cart;
+
+    public ItemClothes() {
+    }
+
+    public ItemClothes(String bar_code, Double price, String discount_code, Clothes clothes) {
         this.bar_code = bar_code;
         this.price = price;
         this.discount_code = discount_code;
         this.clothes = clothes;
     }
 
+    public ItemClothes(String bar_code, Double price, String discount_code, Clothes clothes, Cart cart) {
+        this.bar_code = bar_code;
+        this.price = price;
+        this.discount_code = discount_code;
+        this.clothes = clothes;
+        this.cart = cart;
+    }
+
+    public ItemClothes(Integer id, String bar_code, Double price, String discount_code, Clothes clothes) {
+        this.id = id;
+        this.bar_code = bar_code;
+        this.price = price;
+        this.discount_code = discount_code;
+        this.clothes = clothes;
+    }
+
+    public ItemClothes(Integer id, String bar_code, Double price, String discount_code, Clothes clothes, Cart cart) {
+        this.id = id;
+        this.bar_code = bar_code;
+        this.price = price;
+        this.discount_code = discount_code;
+        this.clothes = clothes;
+        this.cart = cart;
+    }
+
     public Integer getId() {
         return id;
-    }
-
-    public Integer getClothesId() {
-        return clothesId;
-    }
-
-    public Integer getCartId() {
-        return cartId;
     }
 
     public String getBar_code() {
@@ -62,14 +81,6 @@ public class ItemClothes {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public void setClothesId(Integer clothesId) {
-        this.clothesId = clothesId;
-    }
-
-    public void setCartId(Integer cartId) {
-        this.cartId = cartId;
     }
 
     public void setBar_code(String bar_code) {

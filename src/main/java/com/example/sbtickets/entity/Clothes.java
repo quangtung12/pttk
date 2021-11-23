@@ -22,6 +22,14 @@ public class Clothes {
     @Column(name = "Image")
     private String image;
 
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "style_clothesID")
+    private StyleClothes styleClothes;
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "clothes_brandsID")
+    private ClothesBrands clothesBrand;
+
     public Clothes() {
     }
 

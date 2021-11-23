@@ -25,6 +25,9 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<ItemShoe> itemShoes;
 
+    @OneToMany(mappedBy = "cart")
+    private List<ItemClothes> itemClothes;
+
 
     public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks, List<ItemShoe> itemShoes) {
         this.id = id;

@@ -103,4 +103,28 @@ public class Cart {
     public void setItemShoes(List<ItemShoe> itemShoes) {
         this.itemShoes = itemShoes;
     }
+
+    public List<ItemClothes> getItemClothes() {
+        return itemClothes;
+    }
+
+    public void setItemClothes(List<ItemClothes> itemClothes) {
+        this.itemClothes = itemClothes;
+    }
+
+    public List<ItemElectronic> getItemElectronic() {
+        return itemElectronic;
+    }
+
+    public void setItemElectronic(List<ItemElectronic> itemElectronic) {
+        this.itemElectronic = itemElectronic;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

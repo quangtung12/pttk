@@ -22,7 +22,7 @@ public class ItemElectronic {
     private String saleoff;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="EletronicID")
+    @JoinColumn(name ="ElectronicID")
     private Electronic electronic;
 
     @ManyToOne(fetch = FetchType.LAZY)

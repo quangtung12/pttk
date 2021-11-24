@@ -67,7 +67,7 @@ public class ItemElectronicController {
                 ItemElectronic addedItemElectronic = new ItemElectronic(itemElectronic.getBarCode(), itemElectronic.getPrice(),
                         itemElectronic.getSaleoff(), electronic, cartItem);
                 itemElectronicService.createItemElectronic(addedItemElectronic);
-                response.setMsg("Add Item Book Successfully");
+                response.setMsg("Add Item Electronic Successfully");
                 response.setStatus(HttpStatus.OK.value());
             }
 
@@ -75,7 +75,7 @@ public class ItemElectronicController {
                 Exception ex
         ){
             ex.printStackTrace();
-            response.setMsg("Add Item Book Failed");
+            response.setMsg("Add Item Electronic Failed");
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             return new ResponseEntity<WrapperResponse>(response,HttpStatus.FAILED_DEPENDENCY);
         }
@@ -83,7 +83,7 @@ public class ItemElectronicController {
     }
 
     @PutMapping(UrlConst.UPDATE_ITEM_ELECTRONIC)
-    public ResponseEntity<WrapperResponse> updateBook(@PathVariable (value =  "id") int id,
+    public ResponseEntity<WrapperResponse> updateItemElectronic(@PathVariable (value =  "id") int id,
                                                       @RequestBody ItemElectronicBean itemElectronicBean) throws Exception {
         WrapperResponse response = new WrapperResponse();
         try {
@@ -92,14 +92,14 @@ public class ItemElectronicController {
             Electronic electronic = electronicService.getElectronicById(electronicID);
             int cartId = 1;
             Cart cartItem = cartService.getCart(cartId);
-            ItemElectronic addedItemElectronic = new ItemElectronic(id,itemElectronic.getBarCode(), itemElectronic.getPrice(),
-                    itemElectronic.getSaleoff(), electronic, cartItem);
+            ItemElectronic addedItemElectronic = new ItemElectronic(id,itemElectronicBean.getBarCode(), itemElectronicBean.getPrice(),
+                    itemElectronicBean.getSaleoff(), electronic, cartItem);
             itemElectronicService.updateItemElectronic(addedItemElectronic);
-            response.setMsg("Update Item Book Successfully");
+            response.setMsg("Update Item Electronic Successfully");
             response.setStatus(HttpStatus.OK.value());
 
         }catch (Exception ex){
-            response.setMsg("Add Item Book Failed");
+            response.setMsg("Update Item Electronic Failed");
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             return new ResponseEntity<WrapperResponse>(response,HttpStatus.FAILED_DEPENDENCY);
         }
@@ -107,15 +107,15 @@ public class ItemElectronicController {
     }
 
     @DeleteMapping(UrlConst.DELETE_ITEM_ELECTRONIC)
-    public ResponseEntity<WrapperResponse> deleteBook(@PathVariable(value = "id") int id){
+    public ResponseEntity<WrapperResponse> deleteItemElectronic(@PathVariable(value = "id") int id){
         WrapperResponse response = new WrapperResponse();
         try {
             itemElectronicService.deleteItemElectronic(id);
-            response.setMsg("Delete Item Book Successfully");
+            response.setMsg("Delete Item Electronic Successfully");
             response.setStatus(HttpStatus.OK.value());
 
         }catch (Exception ex){
-            response.setMsg("Delete Item Book Failed");
+            response.setMsg("Delete Item Electronic Failed");
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             return new ResponseEntity<WrapperResponse>(response,HttpStatus.FAILED_DEPENDENCY);
         }

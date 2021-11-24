@@ -4,15 +4,9 @@ import com.example.sbtickets.bean.CartItemBean;
 import com.example.sbtickets.bean.ItemBookBean;
 import com.example.sbtickets.bean.WrapperResponse;
 import com.example.sbtickets.common.UrlConst;
-import com.example.sbtickets.entity.Book;
-import com.example.sbtickets.entity.Cart;
-import com.example.sbtickets.entity.ItemBook;
-import com.example.sbtickets.entity.ItemShoe;
+import com.example.sbtickets.entity.*;
 import com.example.sbtickets.repository.BookRespository;
-import com.example.sbtickets.service.BookService;
-import com.example.sbtickets.service.CartService;
-import com.example.sbtickets.service.ItemBookService;
-import com.example.sbtickets.service.ItemShoeService;
+import com.example.sbtickets.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +27,12 @@ public class CartController {
     @Autowired
     ItemShoeService itemShoeService;
 
+    @Autowired
+    ItemClothesService itemClothesService;
+
+    @Autowired
+    ItemElectronicService itemElectronicService;
+
     @PostMapping(UrlConst.ADD_TO_CART)
     public ResponseEntity<WrapperResponse> addToCart(@RequestBody CartItemBean cartItemBean){
         WrapperResponse response = new WrapperResponse();
@@ -41,6 +41,8 @@ public class CartController {
             Cart cart = cartService.getCart(cartId);
             ItemBook itembook = new ItemBook();
             ItemShoe itemShoe = new ItemShoe();
+            ItemClothes itemClothes = new ItemClothes();
+            ItemElectronic itemElectronic = new ItemElectronic();
             if(cartItemBean.getTypeItem().equals("Book")){
                 itembook = itemBookService.getItemBookById(cartItemBean.getItemId());
                 cart.getItemBooks().add(itembook);
@@ -53,6 +55,18 @@ public class CartController {
                 itemShoe.setCart(cart);
                 cartService.insertItem(cart);
                 itemShoeService.updateItemShoe(itemShoe);
+            } else if (cartItemBean.getTypeItem().equals("Clothes")) {
+                itemClothes = itemClothesService.getItemClothesId(cartItemBean.getItemId());
+                cart.getItemClothes().add(itemClothes);
+                itemClothes.setCart(cart);
+                cartService.insertItem(cart);
+                itemClothesService.updateItemClothes(itemClothes);
+            } else if (cartItemBean.getTypeItem().equals("Electronic")) {
+                itemElectronic = itemElectronicService.getItemElectronicById(cartItemBean.getItemId());
+                cart.getItemElectronic().add(itemElectronic);
+                itemElectronic.setCart(cart);
+                cartService.insertItem(cart);
+                itemElectronicService.updateItemElectronic(itemElectronic);
             }
             response.setMsg("Add To Cart Successfully");
             response.setStatus(HttpStatus.OK.value());

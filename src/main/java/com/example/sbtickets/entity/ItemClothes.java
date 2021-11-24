@@ -98,4 +98,12 @@ public class ItemClothes {
     public void setClothes(Clothes clothes) {
         this.clothes = clothes;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 }

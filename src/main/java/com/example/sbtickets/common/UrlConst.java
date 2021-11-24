@@ -21,6 +21,14 @@ public class UrlConst {
 
     public static final String GET_ELECTRONIC = HOME + "/getElectronic";
 
+    public static final String GET_ELECTRONIC_BY_ID = HOME + "/getElectronic/{id}";
+
+    public static final String CREATE_ELECTRONIC = HOME + "/createElectronic";
+
+    public static final String UPDATE_ELECTRONIC = HOME + "/updateElectronic/{id}";
+
+    public static final String DELETE_ELECTRONIC = HOME + "/removeElectronic/{id}";
+
     public static final String GET_CLOTHES = HOME + "/getClothes";
 
     public static final String GET_ITEM_BOOKS = HOME + "/getItemBooks";

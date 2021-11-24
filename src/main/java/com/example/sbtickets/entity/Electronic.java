@@ -34,7 +34,7 @@ public class Electronic {
     private List<ItemElectronic> itemElectronic;
 
 
-    public Electronic() {
+    public Electronic(String producer, String name, String type, Date producer_date, String ram, String cpu, String screen, String keyboard, String image) {
     }
 
     public Electronic(Integer id, String producer, String name, String type, Date producer_date, String ram, String cpu, String screen, String keyboard) {

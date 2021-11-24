@@ -8,8 +8,6 @@ import java.util.Date;
 
 @Entity
 @Table(name ="itembook")
-@Getter
-@Setter
 public class ItemBook {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,6 +56,54 @@ public class ItemBook {
         this.discountCode = discountCode;
         this.note = note;
         this.book = book;
+        this.cart = cart;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getBarCode() {
+        return barCode;
+    }
+
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDiscountCode() {
+        return discountCode;
+    }
+
+    public void setDiscountCode(String discountCode) {
+        this.discountCode = discountCode;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setCart(Cart cart) {
         this.cart = cart;
     }
 }

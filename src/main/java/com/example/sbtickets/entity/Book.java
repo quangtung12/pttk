@@ -1,5 +1,7 @@
 package com.example.sbtickets.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,10 +28,15 @@ public class Book {
     @Column(name = "Image")
     private String image;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name ="PulisherID")
+    @JsonIgnoreProperties(value = {
+            "referenceList",
+            "handler",
+            "hibernateLazyInitializer"
+    }, allowSetters = true)
     private Publisher publisher;
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
     private List<ItemBook> itemBooks;
 
     public Book() {
@@ -123,9 +130,9 @@ public class Book {
         this.image = image;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
-    }
+//    public Publisher getPublisher() {
+//        return publisher;
+//    }
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;

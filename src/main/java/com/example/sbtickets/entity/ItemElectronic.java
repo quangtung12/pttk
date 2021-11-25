@@ -7,8 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="itemelectronic")
-@Getter
-@Setter
 public class ItemElectronic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +20,7 @@ public class ItemElectronic {
     private String saleoff;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="EletronicID")
+    @JoinColumn(name ="electronicid")
     private Electronic electronic;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,4 +55,37 @@ public class ItemElectronic {
         this.electronic = electronic;
         this.cart = cart;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getBarCode() {
+        return barCode;
+    }
+
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getSaleoff() {
+        return saleoff;
+    }
+
+    public void setSaleoff(String saleoff) {
+        this.saleoff = saleoff;
+    }
+
 }

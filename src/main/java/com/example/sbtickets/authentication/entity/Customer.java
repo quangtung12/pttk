@@ -1,12 +1,15 @@
 package com.example.sbtickets.authentication.entity;
 
+import com.example.sbtickets.entity.Cart;
+import com.example.sbtickets.entity.ItemBook;
 import com.example.sbtickets.entity.Order;
 import org.apache.commons.math3.analysis.function.Add;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
     @Id
@@ -20,6 +23,8 @@ public class Customer {
     @Column(name = "Discriminator")
     private String discriminator;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Cart> cart;
 
     public Customer() {
     }

@@ -1,5 +1,7 @@
 package com.example.sbtickets.entity;
 
+import com.example.sbtickets.authentication.entity.Customer;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
@@ -28,6 +30,10 @@ public class Cart {
     @OneToOne(mappedBy = "cart")
     private Order order;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="customer_id")
+    private Customer customer;
 
     public Cart(Integer id, String amount, String item, Integer totalPrice, List<ItemBook> itemBooks) {
         this.id = id;
